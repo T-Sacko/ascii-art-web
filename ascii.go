@@ -1,6 +1,6 @@
 package main
 
-import (
+/*import (
 	"fmt"
 	"log"
 	"os"
@@ -11,17 +11,15 @@ func AsciiReturn(f string, s string) string {
 	var banner []byte
 	var err error
 	var answer string
-	if len(os.Args) == 3 {
-		banner, err = os.ReadFile(os.Args[2] + ".txt") // read file
-	} else {
-		banner, err = os.ReadFile("standard.txt") // read file
-	}
+
+	banner, err = os.ReadFile(f) // read file
+
 	if err != nil {
 		log.Fatal("ting messup")
 	}
 	//(asciinum-32)*9+1
 	split := strings.Split(string(banner), "\n") // seperates file by new lines
-	myting := strings.Split(os.Args[1], "\\n")   // seperates the argument by '\n'
+	myting := strings.Split(s, "\\n")            // seperates the argument by '\n'
 	for word := 0; word < len(myting); word++ {
 
 		if word == 0 && len(myting) >= 3 {
@@ -34,11 +32,11 @@ func AsciiReturn(f string, s string) string {
 				k = 7
 			}
 			for i := 0; i < len(myting[word]); i++ { // every letter in the word
-				fmt.Print(split[(int(myting[word][i])-32)*9+1+k]) // prints row of a letter
+				answer += split[(int(myting[word][i])-32)*9+1+k] // prints row of a letter
 				// use += to add to "answer" variable
 			}
 			if len(myting[word]) != 0 {
-				fmt.Println()
+				answer += "\n"
 				// use += to add "\n" to "answer" variable
 			}
 			if len(myting[word]) == 0 && len(myting) >= 2 {
@@ -53,3 +51,4 @@ func AsciiReturn(f string, s string) string {
 	}
 	return answer
 }
+*/
