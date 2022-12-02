@@ -11,11 +11,6 @@ import (
 
 var tmpl *template.Template
 
-type Data struct {
-	n int
-	s string
-}
-
 func main() {
 	tmpl, _ = template.ParseFiles("index.html")
 	http.HandleFunc("/", Handler)
