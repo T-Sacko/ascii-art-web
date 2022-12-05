@@ -42,7 +42,7 @@ func AsciiReturn(f string, s string) string {
 	}
 	//(asciinum-32)*9+1
 	split := strings.Split(string(banner), "\n") // seperates file by new lines
-	myting := strings.Split(s, "\\n")            // seperates the argument by '\n'
+	myting := strings.Split(strings.ReplaceAll(s,"\r",""), "\\n")            // seperates the argument by '\n'
 	for word := 0; word < len(myting); word++ {
 
 		if word == 0 && len(myting) >= 3 {
@@ -55,8 +55,11 @@ func AsciiReturn(f string, s string) string {
 				k = 7
 			}
 			for i := 0; i < len(myting[word]); i++ { // every letter in the word
+				if myting[word][i]!=13&&myting[word][i]!=10{
 				answer += split[(int(myting[word][i])-32)*9+1+k] // prints row of a letter
+				}
 				// use += to add to "answer" variable
+				
 			}
 			if len(myting[word]) != 0 {
 				answer += "\n"

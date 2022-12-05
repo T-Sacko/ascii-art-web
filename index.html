@@ -1,6 +1,16 @@
 
 <html>
     <head>
+        <style>
+            
+            .center {
+            text-align: center;
+              margin: auto;
+              width: 65%;
+              border: 3px solid #73AD21;
+              padding: 10px;
+            }
+            </style>
         
         <meta charset="UTF-8">
         <meta charset="UTF-8">
@@ -9,9 +19,9 @@
     <title>asciiiweb</title>
     </head>
     <body>
-        <div>
+        <div class="center">
         <form action="/ascii" method="post">
-        <label>write suttin</label><input name="name" type="text" value=""/><br>
+        <label>select suttin</label><br>
         <select id="fonts" name="fonts">
             <option value="standard.txt">standard.txt</option>
             <option value="thinkertoy.txt">thinkertoy.txt</option>
@@ -19,13 +29,11 @@
          
           </select>
         <br><br><br>
-
+        <label>write suttin</label>
         <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
         <input type="submit" value="submit">
         </form>
         </div>
-        <div>
-            <pre>{{.}}</pre>
-        </div>
+        
     </body>
 </html>
