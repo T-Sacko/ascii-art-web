@@ -25,8 +25,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 func Ascii(w http.ResponseWriter, r *http.Request) {
 	text := r.FormValue("message")
 	font := r.FormValue("fonts")
-	data := font
-	data = AsciiReturn(font, text)
+	data := AsciiReturn(font, text)
 	tmpl.Execute(w, data)
 }
 
@@ -41,9 +40,11 @@ func AsciiReturn(f string, s string) string {
 		log.Fatal("ting messup")
 	}
 	//(asciinum-32)*9+1
-	split := strings.Split(string(banner), "\n") // seperates file by new lines
-	myting := strings.Split(strings.ReplaceAll(s,"\r",""), "\\n")            // seperates the argument by '\n'
+	split := strings.Split(string(banner), "\n")
+	st := strings.ReplaceAll(s, "\r", "") // seperates file by new lines
+	myting := strings.Split(st, "\\n")    // seperates the argument by '\n'
 	for word := 0; word < len(myting); word++ {
+		fmt.Println([]byte(myting[word]))
 
 		if word == 0 && len(myting) >= 3 {
 			if len(myting[0]) == 0 && len(myting[1]) == 0 && len(myting[2]) == 0 {
@@ -55,11 +56,16 @@ func AsciiReturn(f string, s string) string {
 				k = 7
 			}
 			for i := 0; i < len(myting[word]); i++ { // every letter in the word
-				if myting[word][i]!=13&&myting[word][i]!=10{
-				answer += split[(int(myting[word][i])-32)*9+1+k] // prints row of a letter
+
+				if myting[word][i] == 13 || myting[word][i] == 10 {
+					answer = answer
+				} else {
+					answer += split[(int(myting[word][i])-32)*9+1+k]
 				}
+
+				// prints row of a letter
+
 				// use += to add to "answer" variable
-				
 			}
 			if len(myting[word]) != 0 {
 				answer += "\n"
@@ -74,6 +80,7 @@ func AsciiReturn(f string, s string) string {
 				}
 			}
 		}
+		// fmt.Println(len(myting[2]))
 	}
 	return answer
 }
