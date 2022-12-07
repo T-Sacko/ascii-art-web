@@ -40,11 +40,12 @@ func AsciiReturn(f string, s string) string {
 		log.Fatal("ting messup")
 	}
 	//(asciinum-32)*9+1
-	split := strings.Split(string(banner), "\n")
+	split := strings.Split(strings.ReplaceAll(string(banner), "\r", ""), "\n")
 	st := strings.ReplaceAll(s, "\r", "") // seperates file by new lines
-	myting := strings.Split(st, "\\n")    // seperates the argument by '\n'
+	myting := strings.Split(st, "\n")     // seperates the argument by '\n'
 	for word := 0; word < len(myting); word++ {
 		fmt.Println([]byte(myting[word]))
+		fmt.Println(myting[word][0])
 
 		if word == 0 && len(myting) >= 3 {
 			if len(myting[0]) == 0 && len(myting[1]) == 0 && len(myting[2]) == 0 {
@@ -57,30 +58,17 @@ func AsciiReturn(f string, s string) string {
 			}
 			for i := 0; i < len(myting[word]); i++ { // every letter in the word
 
-				if myting[word][i] == 13 || myting[word][i] == 10 {
-					answer = answer
-				} else {
-					answer += split[(int(myting[word][i])-32)*9+1+k]
-				}
+				answer += split[(int(myting[word][i])-32)*9+1+k]
 
 				// prints row of a letter
 
 				// use += to add to "answer" variable
 			}
-			if len(myting[word]) != 0 {
-				answer += "\n"
-				// use += to add "\n" to "answer" variable
-			}
-			if len(myting[word]) == 0 && len(myting) >= 2 {
-				fmt.Println()
-				if len(myting) == 2 && word != len(myting)-1 {
-					if len(myting[word+1]) == 0 {
-						word++
-					}
-				}
-			}
+
+			answer += "\n"
+
 		}
-		// fmt.Println(len(myting[2]))
+
 	}
 	return answer
 }
