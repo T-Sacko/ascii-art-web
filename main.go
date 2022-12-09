@@ -51,7 +51,6 @@ func AsciiReturn(f string, s string) string {
 	myting := strings.Split(st, "\n")     // seperates the argument by '\n'
 	for word := 0; word < len(myting); word++ {
 		fmt.Println([]byte(myting[word]))
-		fmt.Println(myting[word][0])
 
 		//if word == 0 && len(myting) >= 3 {
 		//	if len(myting[0]) == 0 && len(myting[1]) == 0 && len(myting[2]) == 0 {
@@ -70,7 +69,9 @@ func AsciiReturn(f string, s string) string {
 			}
 
 			answer += "\n"
-
+			if word == len(myting)-1 && len(myting[word]) == 0 {
+				return answer
+			}
 		}
 
 	}
