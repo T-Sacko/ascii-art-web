@@ -1,4 +1,4 @@
-package goss
+package Gos
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func AsciiReturn(f string, s string) string {
+func Asciii(f string, s string) string {
 	var banner []byte
 	var err error
 	var answer string
