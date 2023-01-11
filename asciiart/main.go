@@ -10,11 +10,14 @@ import (
 var tmpl *template.Template
 
 func main() {
-	// fmt.Println("Go")
-	// tmpl, _ = template.ParseFiles("index.html")
-	http.HandleFunc("/", Handler)
-	http.HandleFunc("/ascii", Ascii)
-	http.ListenAndServe(":5505", nil)
+	fmt.Println("Go")
+	//tmpl, _ = template.ParseFiles("index.html")
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", Handler)
+	mux.HandleFunc("/ascii", Ascii)
+	//http.HandleFunc("/", Handler)
+	//http.HandleFunc("/ascii", Ascii)
+	http.ListenAndServe(":5505", mux)
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -37,7 +40,7 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		tmpl, _ = template.ParseFiles("404.html")
 	}
-	fmt.Println(r.URL.Path)
+	//fmt.Println(r.URL.Path)
 	text := r.FormValue("message")
 	font := r.FormValue("fonts")
 	data := Gos.Asciii(font, text)
@@ -45,6 +48,7 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 
 		tmpl, _ = template.ParseFiles("400.html")
+
 	} else if data == "nop" {
 		w.WriteHeader(http.StatusInternalServerError)
 		tmpl, _ = template.ParseFiles("500.html")
