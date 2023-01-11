@@ -18,6 +18,12 @@ func Asciii(f string, s string) string {
 	if err != nil {
 		log.Fatal("ting messup")
 	}
+	for _, v := range s {
+		if v < 32 || v > 127 {
+			return "no"
+		}
+	}
+
 	//(asciinum-32)*9+1
 	split := strings.Split(strings.ReplaceAll(string(banner), "\r", ""), "\n")
 	st := strings.ReplaceAll(s, "\r", "") // seperates file by new lines
