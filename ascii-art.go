@@ -2,7 +2,6 @@ package Gos
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
@@ -14,13 +13,16 @@ func Asciii(f string, s string) string {
 	if s == "" {
 		return ""
 	}
+	fmt.Println([]byte(s))
 	banner, err = os.ReadFile(f) // read file
 	if err != nil {
-		log.Fatal("ting messup")
+		return "nop"
 	}
 	for _, v := range s {
 		if v < 32 || v > 127 {
-			return "no"
+			if v != 13 && v != 10 {
+				return "no"
+			}
 		}
 	}
 
@@ -29,7 +31,7 @@ func Asciii(f string, s string) string {
 	st := strings.ReplaceAll(s, "\r", "") // seperates file by new lines
 	myting := strings.Split(st, "\n")     // seperates the argument by '\n'
 	for word := 0; word < len(myting); word++ {
-		fmt.Println([]byte(myting[word]))
+		//fmt.Println([]byte(myting[word]))
 		//if word == 0 && len(myting) >= 3 {
 		//	if len(myting[0]) == 0 && len(myting[1]) == 0 && len(myting[2]) == 0 {
 		//	word += 1

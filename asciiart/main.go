@@ -43,6 +43,7 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 	data := Gos.Asciii(font, text)
 	if data == "no" {
 		w.WriteHeader(http.StatusBadRequest)
+
 		tmpl, _ = template.ParseFiles("400.html")
 	} else if data == "nop" {
 		w.WriteHeader(http.StatusInternalServerError)
